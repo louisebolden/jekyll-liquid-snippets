@@ -1,0 +1,25 @@
+<!-- Display related posts, using the current post's category -->
+<h4>Related posts:</h4>
+            
+    <div class="row">
+                
+      {% capture pagecat %}{{ page.category | downcase }}{% endcapture %}
+                
+        {% if site.categories.[pagecat].size > 0 %}
+          {% for post in site.categories.[pagecat] %}
+            {% if post.url != page.url %}
+              <div class="col-sm-3">
+                <a href="{{ site.baseurl }}{{ post.url }}">
+                  <img src="{{ site.baseurl }}/assets/images{{ post.featuredImage }}">
+                    <h5>{{ post.title }}</h5>
+                </a>
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          <div class="col-sm-9">
+            <p>No related posts to show yet. Check back soon!</p>
+          </div>
+        {% endif %}
+      
+      </div>
