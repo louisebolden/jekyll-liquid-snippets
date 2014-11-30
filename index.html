@@ -23,3 +23,18 @@
         {% endif %}
       
       </div>
+
+<!-- Display related posts, using the current post's tags -->
+<h4>Related posts</h4>
+	
+<ul>			
+            {% for tag in page.tags %}
+	            {% for post in site.posts limit:3 %}
+			{% if post.tags contains tag %}
+				{% if post.url != page.url %}
+					<li><a href="{{ site.baseurl }}{{ post.url }}" title="{{ post.title }}">{{ post.title }} &raquo;</a></li>
+				{% endif %}
+                        	{% endif %}
+		{% endfor %}
+            {% endfor %}
+</ul>
